@@ -1,5 +1,6 @@
+const { Sequelize, Op, Model, DataTypes } = require("sequelize");
 const path = require('path');
-
+const sequelize = require('./util/database')
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -20,4 +21,11 @@ app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
 app.use(errorController.get404);
+
+
+
+// imort models
+
+
+// finish file
 app.listen(3000);
