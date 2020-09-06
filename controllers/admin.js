@@ -1,5 +1,5 @@
-const user = require('./../models/users')
-const User = user();
+const Models = require('./../models/bootstrap');
+const Product = Models.Product
 
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/add-product', {
@@ -12,7 +12,7 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.getEditProduct = (req, res, next) => {
-  User.findOne({ where: { id: req.params.id } }).then(product => {
+  Product.findOne({ where: { id: req.params.id } }).then(product => {
     res.render('admin/edit-product', {
       pageTitle: 'Edit Product',
       path: '/admin/edit-product',
@@ -35,10 +35,9 @@ exports.postEditProduct = (req, res, next) => {
   const price = req.body.price;
   const description = req.body.description;
 
-  User.findOne({ where: { id: id } }).then(product => {
+  Product.findOne({ where: { id: id } }).then(product => {
     product.update({ title, imageUrl, description, price })
       .then(data => {
-        console.log(data)
         res.redirect('/');
       })
       .catch(error => {
@@ -58,10 +57,9 @@ exports.postDeleteProduct = (req, res, next) => {
   const price = req.body.price;
   const description = req.body.description;
 
-  User.findOne({ where: { id: id } }).then(product => {
+  Product.findOne({ where: { id: id } }).then(product => {
     product.destroy()
       .then(data => {
-        console.log(data)
         res.redirect('/admin/products');
       })
       .catch(error => {
@@ -79,9 +77,8 @@ exports.postAddProduct = (req, res, next) => {
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
-  User.create({ title, imageUrl, description, price })
+  Product.create({ title, imageUrl, description, price })
     .then(data => {
-      console.log(data)
       res.redirect('/');
     })
     .catch(error => {
@@ -90,7 +87,7 @@ exports.postAddProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  User.findAll().then(products => {
+  Product.findAll().then(products => {
     res.render('admin/products', {
       prods: products,
       pageTitle: 'Admin Products',
