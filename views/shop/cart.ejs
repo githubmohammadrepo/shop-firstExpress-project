@@ -3,4 +3,41 @@
 
     <body>
         <%- include('../includes/navigation.ejs') %>
+        
+        <main>
+            <% if (products.length > 0) { %>
+            <div class="text-center">
+                <% for (let product of products) { %>
+                <article class="card product-item d-flex w-75">
+                    <div class="card__image w-100 float-left">
+                        <img src="<%= product.dataValues.product.imageUrl %>" class="w" alt="<%= product.title %>">
+                    </div>
+                    <header class="card__header">
+                        <h5 class="product__title">
+                            <%= product.dataValues.product.title %>
+                        </h5>
+                    </header>
+                    <div class="card__content">
+                        <h4 class="product__price">$<%= product.dataValues.product.price *  product.dataValues.qty%> </h4>
+                        <p class="product__description">  <%= product.dataValues.product.description %> </p>
+                    </div>
+                    <div class="card__actions">
+                        <button class="btn btn-danger my-2">remove</button>
+                        <button class="btn btn-indigo my-2">count: <%= product.dataValues.qty%></button>
+                    </div>
+                </article>
+                <% } %>
+                <hr class="w-75">
+                <div class="card__actions">
+                    <form action="/checkout" method="post">
+                        <input type="hidden" name="userId" value="93">
+                        <button class="btn btn-navy">Checkout and Pay</button>
+                    </form>
+                    <button class="btn btn-indigo">Total $ <%=totalPrice%></button>
+                </div>
+            </div>
+            <% } else { %>
+            <h1>No Products Found!</h1>
+            <% } %>
+        </main>
         <%- include('../includes/end.ejs') %>

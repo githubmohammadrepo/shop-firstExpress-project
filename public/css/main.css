@@ -202,3 +202,50 @@ form {
     display: none;
   }
 }
+
+.w-25{
+  width: 25% !important;
+}
+.w-75{
+  width: 75%;
+}
+.w{
+  width: 250px !important;
+}
+.w-100{
+  width: 40% !important;
+}
+.text-center{
+  text-align: center;
+}
+.d-flex {
+  display: flex;
+  margin:auto;
+}
+
+.float-left{
+  float: left;
+  margin: 0;
+}
+.btn-danger{
+  background-color: crimson;
+  color: white;
+}
+.btn-navy{
+  background-color: navy;
+  color: white;
+}
+.btn-navy:hover,
+  .btn-navy:focus{
+  background-color: rgb(70, 41, 17);
+  color: white;
+}
+.btn-indigo{
+  background-color: rgb(44, 53, 44);
+  color:white
+}
+
+.my-2{
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
